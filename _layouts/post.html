@@ -1,0 +1,54 @@
+---
+---
+<style>
+  /* @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap'); */
+  @import url('https://fonts.googleapis.com/css?family=Lora:400,700&display=swap');
+  /* @import url('https://fonts.googleapis.com/css?family=Adamina&display=swap'); */
+  /* @import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700&display=swap'); */
+  /* @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap'); */
+
+  /* @font-face {
+    font-family: "ITC Charter";
+    src: url("charter_regular.woff");
+  } */
+
+  .container, header {
+    max-width: 680px;
+    margin: auto;
+  }
+
+  h1, h2, h3, h4, h5, h6, a, p, ul li, ol li, code {
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'Lora', serif;
+    /* font-family: 'Adamina', serif; */
+    /* font-family: "ITC Charter"; */
+    /* font-family: 'Work Sans', sans-serif; */
+    /* font-family: 'Lato', sans-serif; */
+    /* line-height: 24px; */
+    color: rgb(0, 0, 0, 0.87);
+  }
+
+  a, p, ul li, ol li, code {
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+
+  h1 {
+    margin: 30px;
+  }
+
+  code {
+    background-color: rgb(0, 0, 0, 0.05);
+    padding: 2px 4px;
+  }
+
+</style>
+
+<header>
+  <h1>{{ page.title }}</h1>
+</header>
+
+<div class="container">
+  {{ content }}
+</div>
