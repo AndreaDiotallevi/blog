@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to Incrementally Develop an Algorithm using Test Driven Development - The Prime Factors Kata"
+title:  "JS-How to Incrementally Develop an Algorithm using Test Driven Development - The Prime Factors Kata"
 date:   2020-01-13 20:33:48 +0000
 categories: jekyll update
 ---
@@ -22,46 +22,25 @@ The core of the test-driven development cycle revolves around five simple steps,
 
 In test-driven development, each new cycle begins with writing a test. This test should be as simple as possible, testing a very specific component of a larger feature. This is the first differentiating feature of TTD versus writing unit tests *after* the code is written, as it makes the developer focus on the requirements *before* writing the code.
 
-Having described the first step of the TTD cycle, we can now start implementing the prime factors algorithm, by writing the first test. We will use Ruby with the RSpec testing framework.
+Having described the first step of the TTD cycle, we can now start implementing the prime factors algorithm, by writing the first test. We will use JavaScript with the Jasmine testing framework.
 
-Let's create a new project folder and initialize a new RSpec environment:
-
-```shell
-mkdir prime_factors_kata
-cd prime_factors_kata
-rspec --init
-```
-
-Now, we are ready to create our test file inside the ```spec``` folder:
-
-```shell
-touch spec/prime_factors_spec.rb
-```
-
-Let's now write the first test, the simpliest possible to get us started. We expect the integer number ```1``` to not have any prime factors:
-
-```ruby
-# in prime_factors_spec.rb
-describe "prime_factors" do
-  it "should return an empty array if given 1" do
-    expect(prime_factors(1)).to eq []
-  end
-end
+```javascript
+describe("primeFactors", function() {
+  it("should return [] if given 1", function() {
+    expect(primeFactors(1)).toEqual([])
+  })
+})
 ```
 
 ### 2. Run All Tests and Confirm the New Test Fails
 
 Once the test is created, the next step is to confirm that the test fails. By confirming that the new test fails and does so for the reasons we expect, we can be confident that the test is *useful*, and will be beneficial once we write the code necessary to pass the test.
 
-Let's run the tests with ```rspec```:
+Let's run the tests:
 
 ```shell
-NameError:
-  undefined local variable or method `prime_factors' for main:Object
-# ./spec/prime_factors_spec.rb:1:in `<top (required)>'
+ReferenceError: primeFactors is not defined
 ```
-
-*Red!* We have completed the first step of the red-green-refactor cycle.
 
 ### 3. Write Code to Make the New Test Pass
 
@@ -69,58 +48,26 @@ After confirming that the test fails, we now must write the code that will allow
 
 The code written here will likely be rough and not finalized, but that's ok as the entire test-driven development process encourages constant refactoring, meaning our current code is likely to change numerous times in the future.
 
-We can now start writing our production code, letting the error messages guide us. Let's create the code file ```prime_factors.rb``` inside the ```lib``` folder:
+We can now start writing our production code, letting the error messages guide us.
+
+```javascript
+function primeFactors() {}
+```
+
+Now it's time to run the tests again:
 
 ```shell
-mkdir lib
-touch lib/prime_factors.rb
-```
-
-Let's now define the method ```prime_factors``` and require the code file inside the test file:
-
-```ruby
-# in prime_factors.rb
-def prime_factors
-end
-```
-
-```ruby
-# in prime_factors_spec.rb
-require "prime_factors"
-```
-
-Now it's time to run the tests again, with ```rspec```:
-
-```shell
-ArgumentError:
-  wrong number of arguments (given 1, expected 0)
+Expected undefined to equal [  ].
 ```
 
 The error message has changed and this is a good news, as the code we have just written has solved the previous error message.
 
-Following the new error message, let's add an argument to the method ```prime_factors```:
+In order to make the test pass with the least amount of code, we can just return an empty array:
 
-```ruby
-# in prime_factors.rb
-def prime_factors(n)
-end
-```
-
-Let's run the tests again:
-
-```shell
-Failure/Error: expect(prime_factors(1)).to eq []
-  expected: []
-    got: nil
-```
-
-The error message has changed again, which is good. In order to make the test pass with the least amount of code, we can just return an empty array:
-
-```ruby
-# in prime_factors.rb
-def prime_factors(n)
-  []
-end
+```javascript
+function primeFactors() {
+  return []
+}
 ```
 
 ### 4. Run the Tests and Confirm all Tests Pass
@@ -128,13 +75,8 @@ end
 Once our new code is written, we need to confirm that the test now passes:
 
 ```shell
-.
-
-Finished in 0.00259 seconds (files took 0.0979 seconds to load)
-1 example, 0 failures
+1 spec, 0 failures
 ```
-
-*Green!* We have completed the second step of the red-green-refactor cycle.
 
 ### 5. Refactor the Code
 
